@@ -3,29 +3,23 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 
 import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom';
-import { UseState } from './nativeHooks/UseState.tsx';
-import { UseRef } from './nativeHooks/UseRef.tsx';
+import { routes } from './routes.tsx';
 
 export const Root = () => (
   <ul>
-    <li>
-      <Link to={'/useState'}>useState</Link>
-    </li>
-    <li>
-      <Link to={'/useRef'}>useRef</Link>
-    </li>
+    {routes.map((route) => (
+      <li key={route.path}>
+        <Link to={`/${route.path}`}>{route.path}</Link>
+      </li>
+    ))}
   </ul>
 );
 
-const router = createBrowserRouter([
-  { path: '/', element: <Root /> },
-  { path: '/useState', element: <UseState /> },
-  { path: '/useRef', element: <UseRef /> },
-]);
+const router = createBrowserRouter([{ path: '/', element: <Root /> }, ...routes]);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <a href="/">{`<-- Home`}</a>
+    <a href="/">{`<-- Reset`}</a>
     <RouterProvider router={router} />
   </StrictMode>
 );
