@@ -25,6 +25,7 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <a href="/">{`<-- Home`}</a>
     <RouterProvider router={router} />
   </StrictMode>
 );
