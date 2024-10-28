@@ -1,9 +1,13 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import './index.css';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
 
-import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom';
-import { routes } from './routes.tsx';
+import {
+  createBrowserRouter,
+  Link,
+  RouterProvider,
+} from "react-router-dom";
+import { routes } from "./routes.tsx";
 
 export const Root = () => (
   <ul>
@@ -15,11 +19,16 @@ export const Root = () => (
   </ul>
 );
 
-const router = createBrowserRouter([{ path: '/', element: <Root /> }, ...routes]);
+const router = createBrowserRouter([
+  { path: "/", element: <Root /> },
+  ...routes,
+]);
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <a href="/">{`<-- Reset`}</a>
-    <RouterProvider router={router} />
-  </StrictMode>
+    <div>
+      <RouterProvider router={router} />
+    </div>
+  </StrictMode>,
 );
