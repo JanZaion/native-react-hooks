@@ -1,13 +1,13 @@
-import { ChangeEvent, useRef, useState } from "react";
+import { KeyboardEvent, useRef, useState } from "react";
 
 // useRef is a hook that returns a mutable ref object.
 // Ideal for storing value that is independent of the rendering.
 export const UseRef = () => {
   const [startTime, setStartTime] = useState<number | null>(null);
   const [now, setNow] = useState<number | null>(null);
-  const [timeStampedText, setTimeStampedText] = useState<
-    string | number
-  >("");
+  const [storedTimes, setStoredTimes] = useState<(number | string)[]>(
+    [],
+  );
   const intervalRef = useRef<number | undefined>(undefined);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -37,24 +37,33 @@ export const UseRef = () => {
     secondsPassed = (now - startTime) / 1000;
   }
 
-  const storeTime = (event: ChangeEvent<HTMLInputElement>) =>
-    setTimeStampedText(
-      `${secondsPassed.toFixed(3)} 
-      is the time when you wrote: ${event.target.value}`,
-    );
+  const storeTime = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      setStoredTimes((prevStoredTimes) => [
+        ...prevStoredTimes,
+        `${secondsPassed.toFixed(1)}
+         ${(event.target as HTMLInputElement).value}`,
+      ]);
+    }
+  };
 
   return (
     <>
-      <h1>Time passed: {secondsPassed.toFixed(3)}</h1>
+      <h1>Time passed: {secondsPassed.toFixed(1)}</h1>
       <button onClick={handleStart}>Start</button>
       <button onClick={handleStop}>Stop</button>
+      {/* Or use ref to reference a DOM node */}
       <input
         ref={inputRef}
-        onChange={storeTime}
         type="string"
-        placeholder="Mess with the time!"
+        placeholder="Add a timestamp!"
+        onKeyUp={storeTime}
       />
-      <div>{timeStampedText}</div>
+      <div>
+        {storedTimes.map((time) => (
+          <p key={time}>{time}</p>
+        ))}
+      </div>
     </>
   );
 };
