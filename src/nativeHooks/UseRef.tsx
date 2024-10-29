@@ -44,11 +44,8 @@ export const UseRef = () => {
         `${secondsPassed.toFixed(1)}
          ${(event.target as HTMLInputElement).value}`,
       ]);
-      // (event.target as HTMLInputElement).value = "";
     }
   };
-
-  // inputRef.current.value = "";
 
   return (
     <>

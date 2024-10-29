@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { getRandomWholeNumber } from "../utils/getRandomWholeNumber";
 
 // Use this pattern with the props
 // if you neet to react on a value from a previous render.
@@ -18,8 +19,6 @@ const CountLabel = ({ count }: { count: number }) => {
     </>
   );
 };
-
-const getRandomWholeNumber = () => Math.floor(Math.random() * 100);
 
 export const UseState = () => {
   // Initialize with a callback instead of a call saves perf.
