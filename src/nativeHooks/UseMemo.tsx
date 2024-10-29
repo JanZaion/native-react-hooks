@@ -1,6 +1,17 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { getRandomWholeNumber } from "../utils/getRandomWholeNumber";
 
+// Very expensive function
+const expensiveFunction = (number: number) => {
+  let result = 0;
+  for (let i = 0; i < 1000000000; i++) {
+    result += number;
+  }
+
+  return result;
+};
+
+// TODO: Add description and caveats
 export const UseMemo = () => {
   const [randomNumber, setRandomNumber] = useState(0);
   const [memoizedResult, setMemoizedResult] = useState<number | null>(
@@ -14,20 +25,6 @@ export const UseMemo = () => {
   >(null);
   const [nonMemoizedExecutionTime, setNonMemoizedExecutionTime] =
     useState<number | null>(null);
-  const [expensiveFunctionStatus, setExpensiveFunctionStatus] =
-    useState("Idle");
-
-  // Very expensive function
-  const expensiveFunction = (number: number) => {
-    setExpensiveFunctionStatus("Running...");
-
-    let result = 0;
-    for (let i = 0; i < 1000000000; i++) {
-      result += number;
-    }
-
-    return result;
-  };
 
   // Memoized result
   const memoizedValue = useMemo(
@@ -40,7 +37,6 @@ export const UseMemo = () => {
     setMemoizedResult(memoizedValue);
     const end = performance.now();
     setMemoizedExecutionTime(end - start);
-    setExpensiveFunctionStatus("Idle");
   };
 
   const handleNonMemoizedClick = () => {
@@ -64,10 +60,6 @@ export const UseMemo = () => {
         Call Non-Memoized Function
       </button>
       <div>
-        <p>
-          Expensive Function Status:{" "}
-          <strong>{expensiveFunctionStatus}</strong>
-        </p>
         <p>Memoized Result: {memoizedResult}</p>
         <p>
           Memoized Execution Time:{" "}
