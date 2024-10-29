@@ -44,12 +44,15 @@ export const UseRef = () => {
         `${secondsPassed.toFixed(1)}
          ${(event.target as HTMLInputElement).value}`,
       ]);
+      // (event.target as HTMLInputElement).value = "";
     }
   };
 
+  // inputRef.current.value = "";
+
   return (
     <>
-      <h1>Time passed: {secondsPassed.toFixed(1)}</h1>
+      <h1>Seconds: {secondsPassed.toFixed(1)}</h1>
       <button onClick={handleStart}>Start</button>
       <button onClick={handleStop}>Stop</button>
       {/* Or use ref to reference a DOM node */}
@@ -60,8 +63,8 @@ export const UseRef = () => {
         onKeyUp={storeTime}
       />
       <div>
-        {storedTimes.map((time) => (
-          <p key={time}>{time}</p>
+        {storedTimes.map((time, index) => (
+          <p key={`${time}_${index}`}>{time}</p>
         ))}
       </div>
     </>

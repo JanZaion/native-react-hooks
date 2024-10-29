@@ -36,13 +36,16 @@ export const UseState = () => {
 
   // Changing the key of the component
   // will reset the component to it's initial state.
-  const reset = () => setResetKey(getRandomWholeNumber);
+  const reset = () => {
+    setResetKey(getRandomWholeNumber);
+    setNumber(getRandomWholeNumber);
+  };
 
   return (
     <>
+      <CountLabel key={resetKey} count={number} />
       <button onClick={increment}>Increment</button>
       <button onClick={decrement}>Decrement</button>
-      <CountLabel key={resetKey} count={number} />
       <button onClick={reset}>Reset</button>
     </>
   );
