@@ -11,7 +11,8 @@ const expensiveFunction = (number: number) => {
   return result;
 };
 
-// TODO: Add description and caveats
+// useMemo caches the result of the function between renders.
+// Reacts to set dependencies. Improves performance.
 export const UseMemo = () => {
   const [randomNumber, setRandomNumber] = useState(0);
   const [memoizedResult, setMemoizedResult] = useState<number | null>(
