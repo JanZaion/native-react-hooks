@@ -15,12 +15,14 @@ import { UseOptimistic } from "./nativeHooks/UseOptimistic.tsx";
 import { UseReducer } from "./nativeHooks/UseReducer.tsx";
 import { UseSyncExternalStore } from "./nativeHooks/UseSyncExternalStore.tsx";
 import { UseTransition } from "./nativeHooks/UseTransition.tsx";
+import { UseDeferredValue } from "./nativeHooks/UseDeferredValue.tsx";
 
 export const routes: RouteObject[] = [
   { path: "useActionState", element: <UseActionState /> },
   { path: "useCallback", element: <UseCallback /> },
   { path: "useContext", element: <UseContext /> },
   { path: "useDebugValue", element: <UseDebugValue /> },
+  { path: "useDeferredValue", element: <UseDeferredValue /> },
   { path: "useEffect", element: <UseEffect /> },
   { path: "useId", element: <UseId /> },
   { path: "useImperativeHandle", element: <UseImperativeHandle /> },
