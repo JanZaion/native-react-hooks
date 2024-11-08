@@ -1,15 +1,6 @@
 import { useState, useMemo } from "react";
 import { getRandomWholeNumber } from "../utils/getRandomWholeNumber";
-
-// Very expensive function
-const expensiveFunction = (number: number) => {
-  let result = 0;
-  for (let i = 0; i < 1000000000; i++) {
-    result += number;
-  }
-
-  return result;
-};
+import { expensiveFunction } from "../utils/expensiveFunction";
 
 // useMemo caches the result of the function between renders.
 // Reacts to set dependencies. Improves performance.
